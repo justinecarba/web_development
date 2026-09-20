@@ -9,7 +9,7 @@
 }
 
 /* =========================================================
-   BODY / GEAR 5 SUN GOD NIKA BACKGROUND
+   BODY
 ========================================================= */
 
 body {
@@ -22,14 +22,13 @@ body {
   font-family: "Poppins", sans-serif;
 
   position: relative;
-  overflow: hidden;
 
   background:
     linear-gradient(
       90deg,
-      rgba(2, 10, 25, 0.78),
-      rgba(3, 35, 65, 0.25),
-      rgba(2, 10, 25, 0.72)
+      rgba(2, 10, 25, 0.82),
+      rgba(3, 35, 65, 0.3),
+      rgba(2, 10, 25, 0.78)
     ),
     url("https://rare-gallery.com/mocahbig/1375183-luffy-sun-god-nika-gear-5-one-piece-4k-pc-wallpaper.jpg");
 
@@ -38,31 +37,30 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
 }
 
 /* =========================================================
-   LEFT NIKA ENERGY
+   BACKGROUND AURA
 ========================================================= */
 
 body::before {
   content: "";
 
-  position: absolute;
+  position: fixed;
 
-  width: 900px;
-  height: 900px;
+  width: 800px;
+  height: 800px;
 
-  left: -350px;
-  bottom: -400px;
+  left: -300px;
+  bottom: -350px;
 
   border-radius: 50%;
 
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.18) 20%,
-    rgba(120, 220, 255, 0.12) 40%,
+    rgba(255, 255, 255, 0.28),
+    rgba(100, 210, 255, 0.12) 40%,
     transparent 70%
   );
 
@@ -70,24 +68,18 @@ body::before {
 
   pointer-events: none;
 
-  z-index: 1;
-
-  animation: nikaAura 5s ease-in-out infinite alternate;
+  animation: auraLeft 5s ease-in-out infinite alternate;
 }
-
-/* =========================================================
-   RIGHT NIKA ENERGY
-========================================================= */
 
 body::after {
   content: "";
 
-  position: absolute;
+  position: fixed;
 
-  width: 800px;
-  height: 800px;
+  width: 700px;
+  height: 700px;
 
-  right: -280px;
+  right: -250px;
   top: -250px;
 
   border-radius: 50%;
@@ -95,7 +87,7 @@ body::after {
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.25),
-    rgba(110, 210, 255, 0.12) 35%,
+    rgba(100, 210, 255, 0.12) 40%,
     transparent 70%
   );
 
@@ -103,9 +95,7 @@ body::after {
 
   pointer-events: none;
 
-  z-index: 1;
-
-  animation: nikaAuraRight 6s ease-in-out infinite alternate;
+  animation: auraRight 6s ease-in-out infinite alternate;
 }
 
 /* =========================================================
@@ -123,8 +113,8 @@ body::after {
 
   background: linear-gradient(
     145deg,
-    rgba(5, 15, 27, 0.94),
-    rgba(8, 30, 50, 0.88)
+    rgba(5, 15, 27, 0.95),
+    rgba(8, 30, 50, 0.9)
   );
 
   border: 2px solid rgba(255, 255, 255, 0.65);
@@ -134,8 +124,7 @@ body::after {
   box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.85),
     0 0 35px rgba(255, 255, 255, 0.16),
-    0 0 70px rgba(40, 150, 255, 0.22),
-    inset 0 0 35px rgba(255, 255, 255, 0.04);
+    0 0 70px rgba(40, 150, 255, 0.22);
 
   backdrop-filter: blur(16px);
 
@@ -146,9 +135,7 @@ body::after {
   animation: appear 0.8s ease;
 }
 
-/* =========================================================
-   TOP GEAR 5 ENERGY LINE
-========================================================= */
+/* TOP ENERGY LINE */
 
 .login-container::before {
   content: "";
@@ -164,22 +151,20 @@ body::after {
   background: linear-gradient(
     90deg,
     transparent,
-    #ffffff,
+    white,
     #75d8ff,
-    #ffffff,
+    white,
     transparent
   );
 
   box-shadow:
-    0 0 10px #ffffff,
+    0 0 10px white,
     0 0 25px rgba(80, 200, 255, 0.9);
 
-  animation: topEnergy 2.5s linear infinite;
+  animation: energyLine 2.5s linear infinite;
 }
 
-/* =========================================================
-   ENERGY RING AROUND LOGIN
-========================================================= */
+/* ENERGY RING */
 
 .login-container::after {
   content: "";
@@ -212,7 +197,7 @@ body::after {
 }
 
 /* =========================================================
-   PIRATE LOGO
+   LOGO
 ========================================================= */
 
 .logo {
@@ -222,11 +207,11 @@ body::after {
 
   margin-bottom: 10px;
 
-  background: linear-gradient(135deg, #ffffff, #bdefff);
+  background: linear-gradient(135deg, white, #bdefff);
 
   color: #071525;
 
-  border: 2px solid #ffffff;
+  border: 2px solid white;
 
   border-radius: 7px;
 
@@ -244,10 +229,10 @@ body::after {
 }
 
 /* =========================================================
-   MAIN TITLE
+   TITLE
 ========================================================= */
 
-h1 {
+.login-container h1 {
   font-family: "Bangers", cursive;
 
   font-size: 62px;
@@ -256,7 +241,7 @@ h1 {
 
   letter-spacing: 5px;
 
-  color: #ffffff;
+  color: white;
 
   margin-top: 8px;
 
@@ -265,10 +250,6 @@ h1 {
     0 0 12px rgba(255, 255, 255, 0.7),
     0 0 30px rgba(100, 210, 255, 0.55);
 }
-
-/* =========================================================
-   SUBTITLE
-========================================================= */
 
 .subtitle {
   margin-top: 8px;
@@ -285,20 +266,24 @@ h1 {
 }
 
 /* =========================================================
-   TITLE DIVIDER
+   DIVIDERS
 ========================================================= */
 
-.title-divider {
+.title-divider,
+.divider {
   display: flex;
 
   align-items: center;
 
   gap: 12px;
+}
 
+.title-divider {
   margin: 21px 0 23px;
 }
 
-.title-divider span {
+.title-divider span,
+.divider span {
   flex: 1;
 
   height: 1px;
@@ -310,18 +295,17 @@ h1 {
   background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.8));
 }
 
-.title-divider b {
-  color: #ffffff;
+.title-divider b,
+.divider b {
+  color: white;
 
   font-size: 11px;
 
   letter-spacing: 2px;
-
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
 /* =========================================================
-   INPUT GROUP
+   INPUTS
 ========================================================= */
 
 .input-group {
@@ -331,10 +315,6 @@ h1 {
 
   text-align: left;
 }
-
-/* =========================================================
-   LABEL
-========================================================= */
 
 .input-group label {
   display: block;
@@ -352,15 +332,10 @@ h1 {
   letter-spacing: 2px;
 }
 
-/* =========================================================
-   INPUT
-========================================================= */
-
 .input-group input {
   display: block;
 
   width: 100%;
-
   height: 48px;
 
   padding: 0 15px;
@@ -382,12 +357,8 @@ h1 {
   transition: 0.25s;
 }
 
-.input-group input::placeholder {
-  color: #777;
-}
-
 .input-group input:focus {
-  border-color: #ffffff;
+  border-color: white;
 
   box-shadow:
     0 0 15px rgba(255, 255, 255, 0.55),
@@ -397,7 +368,7 @@ h1 {
 }
 
 /* =========================================================
-   REMEMBER ROW
+   REMEMBER
 ========================================================= */
 
 .remember {
@@ -430,43 +401,32 @@ h1 {
   width: 14px;
   height: 14px;
 
-  accent-color: #ffffff;
+  accent-color: white;
 
   cursor: pointer;
 }
 
-.forgot {
+#forgotPassword {
   color: #aeeaff;
 
   text-decoration: none;
 
   font-weight: 600;
-
-  transition: 0.25s;
-}
-
-.forgot:hover {
-  color: #ffffff;
-
-  text-shadow: 0 0 10px rgba(150, 230, 255, 0.9);
 }
 
 /* =========================================================
    LOGIN BUTTON
 ========================================================= */
 
-button {
-  display: block;
-
+.login-button {
   width: 100%;
-
   height: 54px;
 
-  border: 2px solid #ffffff;
+  border: 2px solid white;
 
   border-radius: 10px;
 
-  background: linear-gradient(135deg, #ffffff, #8edcff);
+  background: linear-gradient(135deg, white, #8edcff);
 
   color: #071525;
 
@@ -485,34 +445,31 @@ button {
   transition: 0.2s;
 }
 
-button:hover {
+.login-button:hover {
   transform: translateY(-3px);
-
-  background: linear-gradient(135deg, #ffffff, #bff0ff);
 
   box-shadow:
     0 8px 0 #4c9bc2,
-    0 0 30px rgba(255, 255, 255, 0.75),
-    0 0 50px rgba(60, 190, 255, 0.4);
+    0 0 30px rgba(255, 255, 255, 0.75);
 }
 
-button:active {
+.login-button:active {
   transform: translateY(3px);
 
   box-shadow: 0 2px 0 #4c9bc2;
 }
 
+.login-button:disabled {
+  opacity: 0.7;
+
+  cursor: wait;
+}
+
 /* =========================================================
-   OR DIVIDER
+   OTHER LOGIN LINKS
 ========================================================= */
 
 .divider {
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
   margin: 24px 0 20px;
 
   color: rgba(255, 255, 255, 0.65);
@@ -521,18 +478,6 @@ button:active {
 
   letter-spacing: 2px;
 }
-
-.divider span {
-  flex: 1;
-
-  height: 1px;
-
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* =========================================================
-   JOIN CREW
-========================================================= */
 
 .links {
   text-align: center;
@@ -549,7 +494,7 @@ button:active {
 }
 
 .links a {
-  color: #ffffff;
+  color: white;
 
   text-decoration: none;
 
@@ -558,21 +503,7 @@ button:active {
   font-weight: 700;
 
   letter-spacing: 2px;
-
-  transition: 0.25s;
-
-  text-shadow: 0 0 8px rgba(150, 230, 255, 0.4);
 }
-
-.links a:hover {
-  color: #aeeaff;
-
-  text-shadow: 0 0 12px rgba(150, 230, 255, 0.9);
-}
-
-/* =========================================================
-   BACK HOME
-========================================================= */
 
 .back-home {
   text-align: center;
@@ -588,14 +519,6 @@ button:active {
   font-size: 10px;
 
   letter-spacing: 2px;
-
-  transition: 0.25s;
-}
-
-.back-home a:hover {
-  color: #ffffff;
-
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 /* =========================================================
@@ -625,15 +548,429 @@ button:active {
 
   margin-top: 5px;
 
-  color: #ffffff;
+  color: white;
 
   font-family: "Bangers", cursive;
 
   font-size: 15px;
 
   letter-spacing: 2px;
+}
 
-  text-shadow: 0 0 10px rgba(180, 235, 255, 0.7);
+/* =========================================================
+   COMIC PAGE
+========================================================= */
+
+.comic-page {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  overflow-y: auto;
+
+  padding: 35px 20px;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(80, 200, 255, 0.12),
+    rgba(2, 10, 25, 0.98)
+  );
+
+  color: white;
+
+  animation: comicAppear 0.7s ease;
+}
+
+.comic-header {
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+.comic-logo {
+  display: inline-block;
+
+  padding: 7px 20px;
+
+  background: white;
+
+  color: #071525;
+
+  border-radius: 7px;
+
+  border: 2px solid white;
+
+  font-family: "Bangers", cursive;
+
+  font-size: 18px;
+
+  letter-spacing: 3px;
+
+  transform: rotate(-2deg);
+}
+
+.comic-header h1 {
+  margin-top: 15px;
+
+  font-family: "Bangers", cursive;
+
+  font-size: 55px;
+
+  letter-spacing: 5px;
+
+  text-shadow:
+    3px 3px 0 #12395b,
+    0 0 25px rgba(100, 210, 255, 0.6);
+}
+
+.comic-header p {
+  margin-top: 5px;
+
+  color: #aeeaff;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+/* =========================================================
+   COMIC CONTAINER
+========================================================= */
+
+.comic-container {
+  width: min(850px, 95%);
+
+  margin: auto;
+}
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.comic-panel {
+  display: none;
+
+  animation: panelAppear 0.45s ease;
+}
+
+.comic-panel.active {
+  display: block;
+}
+
+.panel-number {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  padding: 5px 12px;
+
+  background: white;
+
+  color: #071525;
+
+  font-family: "Bangers", cursive;
+
+  letter-spacing: 2px;
+
+  transform: rotate(-2deg);
+}
+
+/* =========================================================
+   COMIC ART
+========================================================= */
+
+.comic-art {
+  height: 380px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border: 5px solid white;
+
+  box-shadow:
+    10px 10px 0 rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(80, 200, 255, 0.25);
+}
+
+/* PANEL 1 */
+
+.panel-one {
+  background:
+    radial-gradient(
+      circle at 75% 25%,
+      white,
+      rgba(80, 180, 255, 0.3) 18%,
+      transparent 38%
+    ),
+    linear-gradient(#65c8f2, #102b45 75%);
+}
+
+/* PANEL 2 */
+
+.panel-two {
+  background: linear-gradient(
+    to bottom,
+    #74d7ff 0%,
+    #3e9ed0 50%,
+    #09263e 51%,
+    #061521 100%
+  );
+}
+
+/* PANEL 3 */
+
+.panel-three {
+  background: radial-gradient(
+    circle at center,
+    white,
+    #dff8ff 15%,
+    #5bc8ee 35%,
+    #172e44 80%
+  );
+}
+
+/* PANEL 4 */
+
+.panel-four {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.25),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #071525, #174968);
+}
+
+/* =========================================================
+   COMIC ELEMENTS
+========================================================= */
+
+.sun {
+  position: absolute;
+
+  width: 200px;
+  height: 200px;
+
+  right: 80px;
+  top: 35px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  filter: blur(8px);
+
+  animation: sunPulse 3s infinite alternate;
+}
+
+.character {
+  position: absolute;
+
+  left: 18%;
+  bottom: 30px;
+
+  font-size: 130px;
+
+  animation: floating 3s ease-in-out infinite;
+
+  filter: drop-shadow(8px 8px 0 rgba(0, 0, 0, 0.4));
+}
+
+.waves {
+  position: absolute;
+
+  left: 5%;
+  bottom: 10px;
+
+  font-size: 150px;
+
+  animation: waveMove 2s infinite alternate;
+}
+
+.ship {
+  position: absolute;
+
+  right: 22%;
+  bottom: 60px;
+
+  font-size: 120px;
+
+  animation: floating 3s ease-in-out infinite;
+}
+
+.sun-symbol {
+  position: absolute;
+
+  top: 20px;
+  right: 25%;
+
+  font-size: 150px;
+
+  animation: spin 8s linear infinite;
+}
+
+.treasure {
+  position: absolute;
+
+  right: 20%;
+  bottom: 55px;
+
+  font-size: 130px;
+
+  animation: treasureGlow 2s infinite alternate;
+}
+
+/* =========================================================
+   SPEECH
+========================================================= */
+
+.speech {
+  position: absolute;
+
+  right: 8%;
+  top: 55px;
+
+  max-width: 260px;
+
+  padding: 18px 20px;
+
+  background: white;
+
+  color: #071525;
+
+  border: 4px solid #071525;
+
+  border-radius: 20px;
+
+  font-family: "Bangers", cursive;
+
+  font-size: 24px;
+
+  letter-spacing: 2px;
+
+  text-align: center;
+
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.45);
+
+  transform: rotate(2deg);
+}
+
+/* =========================================================
+   COMIC TEXT
+========================================================= */
+
+.comic-text {
+  margin-top: 18px;
+
+  padding: 18px 20px;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  border-left: 5px solid white;
+}
+
+.comic-text h2 {
+  font-family: "Bangers", cursive;
+
+  font-size: 30px;
+
+  letter-spacing: 3px;
+}
+
+.comic-text p {
+  margin-top: 7px;
+
+  color: #dff8ff;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   COMIC CONTROLS
+========================================================= */
+
+.comic-controls {
+  width: min(850px, 95%);
+
+  margin: 25px auto;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.comic-controls button,
+.return-button {
+  width: auto;
+  height: auto;
+
+  padding: 11px 20px;
+
+  border: 2px solid white;
+
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, white, #8edcff);
+
+  color: #071525;
+
+  font-family: "Bangers", cursive;
+
+  font-size: 17px;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.comic-controls button:hover,
+.return-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+.comic-controls button:disabled {
+  opacity: 0.3;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+#panelCounter {
+  font-family: "Bangers", cursive;
+
+  font-size: 21px;
+
+  letter-spacing: 2px;
+}
+
+/* =========================================================
+   RETURN BUTTON
+========================================================= */
+
+.return-button {
+  display: block;
+
+  margin: 10px auto 40px;
+
+  background: transparent;
+
+  color: white;
+
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* =========================================================
@@ -652,51 +989,55 @@ button:active {
   }
 }
 
-@keyframes nikaAura {
-  0% {
-    transform: scale(0.9) rotate(0deg);
-    opacity: 0.45;
+@keyframes comicAppear {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
   }
 
-  50% {
-    transform: scale(1.05) rotate(8deg);
-    opacity: 0.75;
-  }
-
-  100% {
-    transform: scale(1.18) rotate(15deg);
+  to {
     opacity: 1;
+    transform: scale(1);
   }
 }
 
-@keyframes nikaAuraRight {
-  0% {
-    transform: scale(0.85);
-    opacity: 0.35;
+@keyframes panelAppear {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
   }
 
-  50% {
-    transform: scale(1.05);
-    opacity: 0.65;
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes auraLeft {
+  from {
+    transform: scale(0.9);
+    opacity: 0.4;
   }
 
-  100% {
-    transform: scale(1.2);
+  to {
+    transform: scale(1.15);
     opacity: 0.9;
   }
 }
 
-@keyframes energyRotate {
+@keyframes auraRight {
   from {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: scale(0.85);
+    opacity: 0.3;
   }
 
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: scale(1.15);
+    opacity: 0.8;
   }
 }
 
-@keyframes topEnergy {
+@keyframes energyLine {
   0% {
     transform: translateX(-10%);
   }
@@ -710,27 +1051,73 @@ button:active {
   }
 }
 
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1000px) {
-  body {
-    background-position: 65% center;
+@keyframes energyRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
-  body::before {
-    width: 650px;
-    height: 650px;
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes sunPulse {
+  from {
+    transform: scale(0.9);
+    opacity: 0.35;
   }
 
-  body::after {
-    width: 600px;
-    height: 600px;
+  to {
+    transform: scale(1.15);
+    opacity: 0.75;
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
   }
 
-  .login-container {
-    width: 430px;
+  50% {
+    transform: translateY(-15px) rotate(-3deg);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes waveMove {
+  from {
+    transform: translateX(-20px);
+  }
+
+  to {
+    transform: translateX(20px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes treasureGlow {
+  from {
+    transform: scale(1);
+
+    filter: drop-shadow(0 0 5px white);
+  }
+
+  to {
+    transform: scale(1.1);
+
+    filter: drop-shadow(0 0 30px white);
   }
 }
 
@@ -740,29 +1127,9 @@ button:active {
 
 @media (max-width: 650px) {
   body {
-    min-height: 100vh;
-
     overflow-y: auto;
 
-    padding: 25px 0;
-
-    background-position: 67% center;
-  }
-
-  body::before {
-    width: 500px;
-    height: 500px;
-
-    left: -250px;
-    bottom: -220px;
-  }
-
-  body::after {
-    width: 450px;
-    height: 450px;
-
-    right: -200px;
-    top: -150px;
+    padding: 20px 0;
   }
 
   .login-container {
@@ -771,14 +1138,53 @@ button:active {
     padding: 32px 25px 27px;
   }
 
-  .login-container::after {
-    width: 450px;
-    height: 450px;
-  }
-
-  h1 {
+  .login-container h1 {
     font-size: 48px;
 
     letter-spacing: 3px;
+  }
+
+  .comic-page {
+    padding: 25px 10px;
+  }
+
+  .comic-header h1 {
+    font-size: 40px;
+  }
+
+  .comic-art {
+    height: 300px;
+  }
+
+  .character {
+    font-size: 85px;
+
+    left: 8%;
+  }
+
+  .speech {
+    max-width: 180px;
+
+    font-size: 17px;
+
+    padding: 12px;
+  }
+
+  .sun-symbol {
+    font-size: 100px;
+  }
+
+  .treasure {
+    font-size: 90px;
+  }
+
+  .comic-controls {
+    gap: 10px;
+  }
+
+  .comic-controls button {
+    padding: 9px 12px;
+
+    font-size: 14px;
   }
 }

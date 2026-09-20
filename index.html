@@ -6,22 +6,28 @@
 
     <title>Gear 5 | Grand Line Login</title>
 
-    <!-- Connect external CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Anime-style fonts -->
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet" />
   </head>
 
   <body>
-    <div class="login-container">
+    <!-- ==============================
+         LOGIN PAGE
+    =============================== -->
+
+    <main class="login-container" id="loginPage">
       <div class="logo">ONE PIECE</div>
 
       <h1>GRAND LINE</h1>
 
-      <p class="subtitle">WELCOME, PIRATE</p>
+      <p class="subtitle">WELCOME PIRATE</p>
+
+      <p class="subtitle">JUSTINE KING OF THE PIRATES</p>
 
       <div class="title-divider">
         <span></span>
@@ -29,29 +35,39 @@
         <span></span>
       </div>
 
-      <form>
+      <!-- LOGIN FORM -->
+
+      <form id="loginForm">
+        <!-- NAME -->
+
         <div class="input-group">
-          <label for="username">NAME</label>
+          <label for="username"> NAME </label>
 
           <input
             id="username"
             type="text"
             placeholder="Enter your username"
+            autocomplete="off"
             required />
         </div>
 
+        <!-- BOUNTY -->
+
         <div class="input-group">
-          <label for="bounty">BOUNTY</label>
+          <label for="bounty"> BOUNTY </label>
 
           <input
-            id="username"
-            type="text"
+            id="bounty"
+            type="number"
             placeholder="Enter your bounty berry $"
+            min="0"
             required />
         </div>
 
+        <!-- PASSWORD -->
+
         <div class="input-group">
-          <label for="password">PASSKEY</label>
+          <label for="password"> PASSKEY </label>
 
           <input
             id="password"
@@ -60,39 +76,192 @@
             required />
         </div>
 
+        <!-- REMEMBER -->
+
         <div class="remember">
           <label class="remember-option">
-            <input type="checkbox" />
-            <span>Remember me</span>
+            <input type="checkbox" id="rememberMe" />
+
+            <span> Remember your captain Justine!! </span>
           </label>
 
-          <a href="#" class="forgot">Forgot Password?</a>
+          <a href="#" id="forgotPassword"> Forgot Password? </a>
         </div>
 
-        <button type="submit">SET SAIL</button>
+        <!-- LOGIN BUTTON -->
+
+        <button type="submit" class="login-button" id="loginButton">
+          SET SAIL
+        </button>
+
+        <!-- DIVIDER -->
 
         <div class="divider">
           <span></span>
+
           <b>OR</b>
+
           <span></span>
         </div>
+
+        <!-- JOIN -->
 
         <div class="links">
           <p>Don't have an account?</p>
 
-          <a href="#">JOIN THE CREW</a>
+          <a href="#" id="joinCrew"> JOIN THE CREW </a>
         </div>
 
+        <!-- BACK -->
+
         <div class="back-home">
-          <a href="#">BACK TO HOME</a>
+          <a href="#" id="backHome"> BACK TO HOME </a>
         </div>
       </form>
+
+      <!-- FOOTER -->
 
       <div class="footer">
         <p>SUN GOD NIKA</p>
 
-        <span>FIND THE ONE PIECE</span>
+        <span> FIND THE ONE PIECE </span>
       </div>
-    </div>
+    </main>
+
+    <!-- ==============================
+         COMIC PAGE
+         JavaScript will display this
+    =============================== -->
+
+    <section class="comic-page" id="comicPage" hidden>
+      <div class="comic-header">
+        <div class="comic-logo">ONE PIECE</div>
+
+        <h1>THE GRAND LINE</h1>
+
+        <p>YOUR ADVENTURE BEGINS HERE</p>
+      </div>
+
+      <!-- COMIC -->
+
+      <div class="comic-container">
+        <!-- PANEL 1 -->
+
+        <article class="comic-panel active">
+          <span class="panel-number"> PANEL 01 </span>
+
+          <div class="comic-art panel-one">
+            <div class="sun"></div>
+
+            <div class="character">☠️</div>
+
+            <div class="speech">
+              WELCOME<br />
+              PIRATE!
+            </div>
+          </div>
+
+          <div class="comic-text">
+            <h2>THE CALL OF THE SEA</h2>
+
+            <p>
+              The Grand Line is waiting. A new pirate is ready to begin an
+              unforgettable adventure.
+            </p>
+          </div>
+        </article>
+
+        <!-- PANEL 2 -->
+
+        <article class="comic-panel">
+          <span class="panel-number"> PANEL 02 </span>
+
+          <div class="comic-art panel-two">
+            <div class="waves"></div>
+
+            <div class="ship"></div>
+
+            <div class="speech">
+              SET<br />
+              SAIL!
+            </div>
+          </div>
+
+          <div class="comic-text">
+            <h2>INTO THE GRAND LINE</h2>
+
+            <p>
+              The waves become stronger, but a true pirate never turns back.
+            </p>
+          </div>
+        </article>
+
+        <!-- PANEL 3 -->
+
+        <article class="comic-panel">
+          <span class="panel-number"> PANEL 03 </span>
+
+          <div class="comic-art panel-three">
+            <div class="sun-symbol"></div>
+
+            <div class="character"></div>
+
+            <div class="speech">
+              THE ADVENTURE<br />
+              CONTINUES!
+            </div>
+          </div>
+
+          <div class="comic-text">
+            <h2>THE WILL OF THE DAWN</h2>
+
+            <p>The sun rises over the sea. Your journey is only beginning.</p>
+          </div>
+        </article>
+
+        <!-- PANEL 4 -->
+
+        <article class="comic-panel">
+          <span class="panel-number"> FINAL PANEL </span>
+
+          <div class="comic-art panel-four">
+            <div class="treasure"></div>
+
+            <div class="character">🏴‍☠️</div>
+
+            <div class="speech">
+              FIND THE<br />
+              ONE PIECE!
+            </div>
+          </div>
+
+          <div class="comic-text">
+            <h2>WELCOME ABOARD</h2>
+
+            <p id="welcomeMessage">Your story starts here, Captain!</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- COMIC CONTROLS -->
+
+      <div class="comic-controls">
+        <button type="button" id="previousButton">← PREVIOUS</button>
+
+        <span id="panelCounter"> 1 / 4 </span>
+
+        <button type="button" id="nextButton">NEXT →</button>
+      </div>
+
+      <!-- RETURN -->
+
+      <button type="button" class="return-button" id="returnButton">
+        RETURN TO LOGIN
+      </button>
+    </section>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
   </body>
 </html>
