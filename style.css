@@ -1,1190 +1,1293 @@
-/* =========================================================
-   RESET
-========================================================= */
-
+:root {
+  --ink: #071525;
+  --cyan: #5bdcff;
+  --ice: #bdefff;
+  --gold: #ffd86b;
+  --rc: #9fb8c8;
+  --mx: 50%;
+  --my: 50%;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-/* =========================================================
-   BODY
-========================================================= */
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   font-family: "Poppins", sans-serif;
-
-  position: relative;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(2, 10, 25, 0.82),
-      rgba(3, 35, 65, 0.3),
-      rgba(2, 10, 25, 0.78)
-    ),
-    url("https://rare-gallery.com/mocahbig/1375183-luffy-sun-god-nika-gear-5-one-piece-4k-pc-wallpaper.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
+  color: #fff;
   overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, #164f72, #041321 65%, #01070d);
 }
-
-/* =========================================================
-   BACKGROUND AURA
-========================================================= */
-
-body::before {
-  content: "";
-
+canvas#fx {
   position: fixed;
-
-  width: 800px;
-  height: 800px;
-
-  left: -300px;
-  bottom: -350px;
-
-  border-radius: 50%;
-
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.28),
-    rgba(100, 210, 255, 0.12) 40%,
-    transparent 70%
-  );
-
-  filter: blur(25px);
-
-  pointer-events: none;
-
-  animation: auraLeft 5s ease-in-out infinite alternate;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
 }
 
-body::after {
-  content: "";
-
+/* ---------- AURORA ---------- */
+.aurora {
   position: fixed;
-
-  width: 700px;
-  height: 700px;
-
-  right: -250px;
-  top: -250px;
-
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  filter: blur(70px);
+  opacity: 0.55;
+}
+.aurora i {
+  position: absolute;
+  width: 55vmax;
+  height: 55vmax;
   border-radius: 50%;
-
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.25),
-    rgba(100, 210, 255, 0.12) 40%,
-    transparent 70%
-  );
-
-  filter: blur(30px);
-
-  pointer-events: none;
-
-  animation: auraRight 6s ease-in-out infinite alternate;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.aurora i:nth-child(1) {
+  background: #1fa8d8;
+  left: -15%;
+  top: -25%;
+}
+.aurora i:nth-child(2) {
+  background: #ffe9a8;
+  right: -20%;
+  top: -10%;
+  opacity: 0.45;
+  animation-duration: 24s;
+}
+.aurora i:nth-child(3) {
+  background: #2d5bff;
+  left: 25%;
+  bottom: -40%;
+  opacity: 0.5;
+  animation-duration: 30s;
 }
 
-/* =========================================================
-   LOGIN CONTAINER
-========================================================= */
-
-.login-container {
+/* ---------- LOGIN CARD ---------- */
+.stage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  perspective: 1100px;
+}
+.card {
   position: relative;
-
-  z-index: 10;
-
-  width: 440px;
-
-  padding: 38px 42px 30px;
-
+  width: min(440px, 100%);
+  padding: 38px 40px 28px;
+  text-align: center;
+  border-radius: 24px;
+  isolation: isolate;
+  overflow: hidden;
   background: linear-gradient(
     145deg,
-    rgba(5, 15, 27, 0.95),
-    rgba(8, 30, 50, 0.9)
+    rgba(4, 17, 30, 0.94),
+    rgba(8, 39, 61, 0.92)
   );
-
-  border: 2px solid rgba(255, 255, 255, 0.65);
-
-  border-radius: 22px;
-
+  border: 2px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.85),
-    0 0 35px rgba(255, 255, 255, 0.16),
-    0 0 70px rgba(40, 150, 255, 0.22);
-
-  backdrop-filter: blur(16px);
-
-  text-align: center;
-
-  overflow: hidden;
-
-  animation: appear 0.8s ease;
+    0 30px 90px rgba(0, 0, 0, 0.85),
+    0 0 45px color-mix(in srgb, var(--rc) 55%, transparent);
+  backdrop-filter: blur(18px);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.4s;
+  animation: appear 1s cubic-bezier(0.17, 0.67, 0.3, 1.2);
 }
-
-/* TOP ENERGY LINE */
-
-.login-container::before {
+.card::before {
   content: "";
-
   position: absolute;
-
-  top: 0;
-  left: 5%;
-
-  width: 90%;
-  height: 4px;
-
-  background: linear-gradient(
-    90deg,
+  inset: -60%;
+  z-index: -2;
+  background: conic-gradient(
+    from 0deg,
     transparent,
-    white,
-    #75d8ff,
-    white,
+    var(--rc),
+    #fff,
+    transparent 40%,
+    var(--rc),
     transparent
   );
-
-  box-shadow:
-    0 0 10px white,
-    0 0 25px rgba(80, 200, 255, 0.9);
-
-  animation: energyLine 2.5s linear infinite;
+  animation: spin 6s linear infinite;
 }
-
-/* ENERGY RING */
-
-.login-container::after {
+.card::after {
   content: "";
-
   position: absolute;
-
-  width: 650px;
-  height: 650px;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-
-  border-radius: 50%;
-
-  background: radial-gradient(
-    circle,
-    transparent 50%,
-    rgba(255, 255, 255, 0.04) 51%,
-    rgba(150, 230, 255, 0.08) 53%,
-    transparent 56%
-  );
-
-  pointer-events: none;
-
+  inset: 2px;
+  border-radius: 21px;
   z-index: -1;
-
-  animation: energyRotate 18s linear infinite;
+  background: linear-gradient(
+    145deg,
+    rgba(4, 17, 30, 0.97),
+    rgba(8, 39, 61, 0.96)
+  );
+}
+.holo {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  opacity: 0.35;
+  background:
+    radial-gradient(
+      circle at var(--mx) var(--my),
+      rgba(255, 255, 255, 0.75),
+      transparent 35%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(255, 80, 200, 0.35) 35%,
+      rgba(90, 255, 220, 0.4) 50%,
+      rgba(255, 230, 90, 0.35) 65%,
+      transparent 80%
+    );
+  background-size:
+    100% 100%,
+    250% 250%;
+  background-position:
+    0 0,
+    var(--mx) var(--my);
+}
+.card[data-rarity="legendary"] .holo,
+.card[data-rarity="mythic"] .holo {
+  opacity: 0.55;
 }
 
-/* =========================================================
-   LOGO
-========================================================= */
+/* CSS sun mark (no emoji) */
+.sun-mark {
+  position: absolute;
+  right: 22px;
+  top: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#eaffff 0 8deg, transparent 8deg 24deg);
+  -webkit-mask: radial-gradient(
+    circle,
+    #000 0 34%,
+    transparent 36% 52%,
+    #000 54%
+  );
+  mask: radial-gradient(circle, #000 0 34%, transparent 36% 52%, #000 54%);
+  filter: drop-shadow(0 0 8px var(--cyan));
+  animation: spin 10s linear infinite;
+}
+
+.rarity {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font: 700 10px "Poppins";
+  letter-spacing: 2px;
+  color: var(--ink);
+  background: var(--rc);
+  box-shadow: 0 0 16px var(--rc);
+  transition:
+    background 0.4s,
+    box-shadow 0.4s;
+}
 
 .logo {
   display: inline-block;
-
+  margin-top: 14px;
   padding: 7px 20px;
-
-  margin-bottom: 10px;
-
-  background: linear-gradient(135deg, white, #bdefff);
-
-  color: #071525;
-
-  border: 2px solid white;
-
   border-radius: 7px;
-
-  font-family: "Bangers", cursive;
-
-  font-size: 17px;
-
+  border: 2px solid #fff;
+  font:
+    18px "Bangers",
+    cursive;
   letter-spacing: 3px;
-
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff, var(--ice));
   transform: rotate(-2deg);
-
   box-shadow:
-    4px 5px 0 rgba(0, 0, 0, 0.45),
-    0 0 20px rgba(255, 255, 255, 0.45);
+    4px 5px 0 rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(255, 255, 255, 0.5);
+  animation: float 3s ease-in-out infinite;
 }
-
-/* =========================================================
-   TITLE
-========================================================= */
-
-.login-container h1 {
-  font-family: "Bangers", cursive;
-
-  font-size: 62px;
-
-  line-height: 1;
-
+.card h1 {
+  margin-top: 10px;
+  font:
+    62px/1 "Bangers",
+    cursive;
   letter-spacing: 5px;
-
-  color: white;
-
-  margin-top: 8px;
-
-  text-shadow:
-    3px 3px 0 #12395b,
-    0 0 12px rgba(255, 255, 255, 0.7),
-    0 0 30px rgba(100, 210, 255, 0.55);
+  background: linear-gradient(180deg, #fff 30%, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(3px 3px 0 #12395b) drop-shadow(0 0 18px var(--cyan));
 }
-
 .subtitle {
   margin-top: 8px;
-
-  color: #aeeaff;
-
+  color: #b5efff;
   font-size: 13px;
-
   font-weight: 700;
-
   letter-spacing: 3px;
-
-  text-shadow: 0 0 8px rgba(120, 220, 255, 0.8);
+}
+.captain {
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
-/* =========================================================
-   DIVIDERS
-========================================================= */
-
-.title-divider,
 .divider {
   display: flex;
-
   align-items: center;
-
   gap: 12px;
+  margin: 22px 0;
 }
-
-.title-divider {
-  margin: 21px 0 23px;
+.divider.small {
+  margin: 22px 0 18px;
+  color: rgba(255, 255, 255, 0.65);
 }
-
-.title-divider span,
+.divider b {
+  font-size: 11px;
+  letter-spacing: 2px;
+}
 .divider span {
   flex: 1;
-
   height: 1px;
-
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8));
+  background: linear-gradient(to right, transparent, #fff);
+}
+.divider span:last-child {
+  background: linear-gradient(to left, transparent, #fff);
 }
 
-.title-divider span:last-child {
-  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.8));
-}
-
-.title-divider b,
-.divider b {
-  color: white;
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
-}
-
-/* =========================================================
-   INPUTS
-========================================================= */
-
-.input-group {
-  width: 100%;
-
+/* ---------- FIELDS ---------- */
+.field {
   margin-bottom: 18px;
-
   text-align: left;
 }
-
-.input-group label {
-  display: block;
-
+.field label {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 7px;
-
-  padding-left: 3px;
-
-  color: #aeeaff;
-
+  color: var(--ice);
   font-size: 11px;
-
   font-weight: 700;
-
   letter-spacing: 2px;
 }
-
-.input-group input {
-  display: block;
-
+.field label em {
+  font-style: normal;
+  color: var(--rc);
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px var(--rc);
+}
+.field input {
   width: 100%;
-  height: 48px;
-
+  height: 50px;
   padding: 0 15px;
-
   border: 2px solid rgba(255, 255, 255, 0.2);
-
   border-radius: 10px;
-
   outline: none;
-
-  background: rgba(255, 255, 255, 0.95);
-
-  color: #1b1b1b;
-
-  font-family: "Poppins", sans-serif;
-
-  font-size: 13px;
-
-  transition: 0.25s;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--ink);
+  font: 500 14px "Poppins";
+  transition: 0.3s;
 }
-
-.input-group input:focus {
-  border-color: white;
-
+.field input:focus {
+  border-color: #fff;
   box-shadow:
-    0 0 15px rgba(255, 255, 255, 0.55),
-    0 0 25px rgba(60, 180, 255, 0.4);
-
-  transform: translateY(-1px);
+    0 0 15px #fff,
+    0 0 30px rgba(50, 200, 255, 0.5);
+  transform: translateY(-2px);
 }
-
-/* =========================================================
-   REMEMBER
-========================================================= */
-
-.remember {
-  width: 100%;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  margin: 3px 0 23px;
-
-  color: rgba(255, 255, 255, 0.8);
-
-  font-size: 11px;
+.field input.bad {
+  border-color: #ff6b7a;
+  box-shadow: 0 0 16px #ff6b7a;
+  animation: shake 0.35s;
 }
-
-.remember-option {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
+.pw {
+  position: relative;
+}
+.pw input {
+  padding-right: 70px;
+}
+.eye {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font: 700 10px "Poppins";
+  letter-spacing: 1px;
   cursor: pointer;
-}
-
-.remember-option input {
-  width: 14px;
-  height: 14px;
-
-  accent-color: white;
-
-  cursor: pointer;
-}
-
-#forgotPassword {
-  color: #aeeaff;
-
-  text-decoration: none;
-
-  font-weight: 600;
-}
-
-/* =========================================================
-   LOGIN BUTTON
-========================================================= */
-
-.login-button {
-  width: 100%;
-  height: 54px;
-
-  border: 2px solid white;
-
-  border-radius: 10px;
-
-  background: linear-gradient(135deg, white, #8edcff);
-
-  color: #071525;
-
-  font-family: "Bangers", cursive;
-
-  font-size: 27px;
-
-  letter-spacing: 4px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 5px 0 #4c9bc2,
-    0 0 20px rgba(255, 255, 255, 0.35);
-
   transition: 0.2s;
 }
+.eye:hover {
+  background: #164f72;
+  box-shadow: 0 0 15px var(--cyan);
+}
 
-.login-button:hover {
-  transform: translateY(-3px);
+.remember {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px 0 22px;
+  font-size: 11px;
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+.check input {
+  accent-color: var(--cyan);
+}
+a {
+  color: #bcefff;
+  text-decoration: none;
+  transition: 0.2s;
+}
+a:hover {
+  color: #fff;
+  text-shadow: 0 0 12px var(--cyan);
+}
 
+/* ---------- BUTTON ---------- */
+.go {
+  position: relative;
+  width: 100%;
+  height: 56px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  font:
+    28px "Bangers",
+    cursive;
+  letter-spacing: 4px;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff, #72dcff);
   box-shadow:
-    0 8px 0 #4c9bc2,
-    0 0 30px rgba(255, 255, 255, 0.75);
+    0 6px 0 #3784aa,
+    0 0 25px rgba(100, 220, 255, 0.45);
+  transition: 0.25s;
 }
-
-.login-button:active {
+.go::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 200%;
+  top: -50%;
+  left: -150px;
+  background: rgba(255, 255, 255, 0.7);
+  transform: rotate(25deg);
+  animation: shine 3s linear infinite;
+}
+.go:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 10px 0 #3784aa,
+    0 0 40px rgba(100, 230, 255, 0.8);
+}
+.go:active {
   transform: translateY(3px);
-
-  box-shadow: 0 2px 0 #4c9bc2;
 }
-
-.login-button:disabled {
-  opacity: 0.7;
-
+.go:disabled {
+  filter: grayscale(0.4);
   cursor: wait;
 }
-
-/* =========================================================
-   OTHER LOGIN LINKS
-========================================================= */
-
-.divider {
-  margin: 24px 0 20px;
-
-  color: rgba(255, 255, 255, 0.65);
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
+.arrow {
+  display: inline-block;
+  margin-left: 10px;
+  animation: arrow 1s ease-in-out infinite alternate;
 }
 
 .links {
-  text-align: center;
-
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 }
-
 .links p {
   color: rgba(255, 255, 255, 0.6);
-
   font-size: 11px;
-
   margin-bottom: 6px;
 }
-
 .links a {
-  color: white;
-
-  text-decoration: none;
-
   font-size: 13px;
-
   font-weight: 700;
-
   letter-spacing: 2px;
 }
-
-.back-home {
-  text-align: center;
-
-  margin-bottom: 21px;
+.back {
+  margin-bottom: 20px;
 }
-
-.back-home a {
+.back a {
   color: rgba(255, 255, 255, 0.55);
-
-  text-decoration: none;
-
   font-size: 10px;
-
   letter-spacing: 2px;
 }
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
-  padding-top: 17px;
-
+footer {
+  padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-
-  text-align: center;
 }
-
-.footer p {
+footer p {
   color: rgba(255, 255, 255, 0.65);
-
   font-size: 10px;
-
-  font-weight: 600;
-
   letter-spacing: 2px;
 }
-
-.footer span {
+footer span {
   display: block;
-
   margin-top: 5px;
+  font:
+    15px "Bangers",
+    cursive;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px var(--cyan);
+}
 
-  color: white;
+/* ---------- RARITY COLORS ---------- */
+.card[data-rarity="common"] {
+  --rc: #9fb8c8;
+}
+.card[data-rarity="rare"] {
+  --rc: #4da3ff;
+}
+.card[data-rarity="epic"] {
+  --rc: #b26bff;
+}
+.card[data-rarity="legendary"] {
+  --rc: #ffc94d;
+}
+.card[data-rarity="mythic"] {
+  --rc: #ff5fd2;
+}
 
-  font-family: "Bangers", cursive;
+/* ---------- TOASTS ---------- */
+.toasts {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: grid;
+  gap: 8px;
+  width: min(92%, 380px);
+}
+.toast {
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(4, 17, 30, 0.95);
+  border: 1px solid var(--cyan);
+  box-shadow: 0 0 25px rgba(91, 220, 255, 0.35);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  animation: toastIn 0.35s ease;
+  transition: 0.35s;
+}
+.toast.out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
 
-  font-size: 15px;
+/* ---------- SAIL TRANSITION ---------- */
+.sail {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 999;
+  overflow: hidden;
+  background: radial-gradient(circle, #fff, #70ddff 20%, #071525 70%);
+}
+.sail.active {
+  display: grid;
+  animation: flash 1.5s forwards;
+}
+.sail-text {
+  position: relative;
+  z-index: 2;
+  font:
+    70px "Bangers",
+    cursive;
+  letter-spacing: 7px;
+  text-shadow:
+    5px 5px 0 #12395b,
+    0 0 30px #fff;
+  animation: sailText 1.4s ease-in-out forwards;
+}
+.sail-ring {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  animation: ring 1.4s ease-out forwards;
+}
 
+/* ---------- COMIC PAGE ---------- */
+.comic {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-y: auto;
+  padding: 35px 20px 50px;
+  background:
+    linear-gradient(rgba(2, 10, 20, 0.7), rgba(2, 10, 20, 0.95)),
+    radial-gradient(circle at center, #146b94, #020b14 70%);
+  animation: comicIn 0.8s ease;
+}
+.comic[hidden] {
+  display: none;
+}
+.comic-sun {
+  position: fixed;
+  width: 340px;
+  height: 340px;
+  right: 10%;
+  top: 5%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle, #fff, #7de6ff 30%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+.c-head {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.c-head h1 {
+  margin-top: 14px;
+  font:
+    58px "Bangers",
+    cursive;
+  letter-spacing: 5px;
+  text-shadow:
+    4px 4px 0 #12395b,
+    0 0 25px var(--cyan);
+}
+.c-head p {
+  margin-top: 5px;
+  color: #aeeaff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hud {
+  width: min(850px, 95%);
+  margin: 0 auto 22px;
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(70, 210, 255, 0.15);
+}
+.hud div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.hud span {
+  font-size: 9px;
+  color: #8ddfff;
   letter-spacing: 2px;
 }
-
-/* =========================================================
-   COMIC PAGE
-========================================================= */
-
-.comic-page {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 100;
-
-  overflow-y: auto;
-
-  padding: 35px 20px;
-
-  background: radial-gradient(
-    circle at center,
-    rgba(80, 200, 255, 0.12),
-    rgba(2, 10, 25, 0.98)
-  );
-
-  color: white;
-
-  animation: comicAppear 0.7s ease;
+.hud strong {
+  font:
+    20px "Bangers",
+    cursive;
+  letter-spacing: 2px;
+}
+#hudRank {
+  color: var(--gold);
+  text-shadow: 0 0 12px var(--gold);
 }
 
-.comic-header {
-  text-align: center;
-
-  margin-bottom: 25px;
-}
-
-.comic-logo {
-  display: inline-block;
-
-  padding: 7px 20px;
-
-  background: white;
-
-  color: #071525;
-
-  border-radius: 7px;
-
-  border: 2px solid white;
-
-  font-family: "Bangers", cursive;
-
-  font-size: 18px;
-
-  letter-spacing: 3px;
-
-  transform: rotate(-2deg);
-}
-
-.comic-header h1 {
-  margin-top: 15px;
-
-  font-family: "Bangers", cursive;
-
-  font-size: 55px;
-
-  letter-spacing: 5px;
-
-  text-shadow:
-    3px 3px 0 #12395b,
-    0 0 25px rgba(100, 210, 255, 0.6);
-}
-
-.comic-header p {
-  margin-top: 5px;
-
-  color: #aeeaff;
-
-  font-size: 12px;
-
-  font-weight: 700;
-
-  letter-spacing: 3px;
-}
-
-/* =========================================================
-   COMIC CONTAINER
-========================================================= */
-
-.comic-container {
+.panels {
   width: min(850px, 95%);
-
   margin: auto;
 }
-
-/* =========================================================
-   PANELS
-========================================================= */
-
-.comic-panel {
+.panel {
   display: none;
-
-  animation: panelAppear 0.45s ease;
 }
-
-.comic-panel.active {
+.panel.active {
   display: block;
+  animation: panelIn 0.6s cubic-bezier(0.17, 0.67, 0.3, 1.2);
 }
-
-.panel-number {
+.tag {
   display: inline-block;
-
   margin-bottom: 8px;
-
   padding: 5px 12px;
-
-  background: white;
-
-  color: #071525;
-
-  font-family: "Bangers", cursive;
-
+  background: #fff;
+  color: var(--ink);
+  font:
+    16px "Bangers",
+    cursive;
   letter-spacing: 2px;
-
   transform: rotate(-2deg);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
 }
-
-/* =========================================================
-   COMIC ART
-========================================================= */
-
-.comic-art {
-  height: 380px;
-
+.art {
   position: relative;
-
+  height: 420px;
   overflow: hidden;
-
-  border: 5px solid white;
-
+  isolation: isolate;
+  border: 5px solid #fff;
   box-shadow:
-    10px 10px 0 rgba(0, 0, 0, 0.45),
-    0 0 40px rgba(80, 200, 255, 0.25);
+    12px 12px 0 rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(80, 220, 255, 0.3);
 }
-
-/* PANEL 1 */
-
-.panel-one {
+.a1 {
   background:
-    radial-gradient(
-      circle at 75% 25%,
-      white,
-      rgba(80, 180, 255, 0.3) 18%,
-      transparent 38%
-    ),
-    linear-gradient(#65c8f2, #102b45 75%);
+    radial-gradient(circle at 75% 25%, #fff, #67d8ff 12%, transparent 35%),
+    linear-gradient(#52bce5, #10324c 75%);
 }
-
-/* PANEL 2 */
-
-.panel-two {
-  background: linear-gradient(
-    to bottom,
-    #74d7ff 0%,
-    #3e9ed0 50%,
-    #09263e 51%,
-    #061521 100%
-  );
+.a2 {
+  background: linear-gradient(#7de1ff 0, #319ac8 45%, #08263e 46%, #020d17);
 }
-
-/* PANEL 3 */
-
-.panel-three {
+.a3 {
   background: radial-gradient(
     circle at center,
-    white,
-    #dff8ff 15%,
-    #5bc8ee 35%,
-    #172e44 80%
+    #fff,
+    #b9f4ff 20%,
+    #4bc8ed 45%,
+    #102c43 85%
   );
 }
-
-/* PANEL 4 */
-
-.panel-four {
+.a4 {
   background:
     radial-gradient(
       circle at center,
-      rgba(255, 255, 255, 0.25),
-      transparent 30%
+      rgba(255, 255, 255, 0.2),
+      transparent 25%
     ),
-    linear-gradient(135deg, #071525, #174968);
+    linear-gradient(135deg, #06121e, #1d5c7c);
 }
 
-/* =========================================================
-   COMIC ELEMENTS
-========================================================= */
-
-.sun {
+/* ---------- CSS-DRAWN ART ---------- */
+.orb {
   position: absolute;
-
-  width: 200px;
-  height: 200px;
-
-  right: 80px;
+  width: 190px;
+  height: 190px;
+  right: 70px;
   top: 35px;
-
   border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.45);
-
-  filter: blur(8px);
-
-  animation: sunPulse 3s infinite alternate;
+  background: radial-gradient(
+    circle,
+    #fff,
+    #dffaff 40%,
+    rgba(100, 220, 255, 0.2) 70%,
+    transparent
+  );
+  animation: sunPulse 2s ease-in-out infinite alternate;
 }
 
-.character {
+/* hero: a glowing straw-hat figure */
+.hero {
   position: absolute;
-
-  left: 18%;
+  left: 17%;
   bottom: 30px;
-
-  font-size: 130px;
-
-  animation: floating 3s ease-in-out infinite;
-
-  filter: drop-shadow(8px 8px 0 rgba(0, 0, 0, 0.4));
+  width: 140px;
+  height: 135px;
+  filter: drop-shadow(8px 8px 0 rgba(0, 0, 0, 0.4)) drop-shadow(0 0 22px #fff);
+  animation: bob 2.5s ease-in-out infinite;
 }
-
-.waves {
+.hero i {
   position: absolute;
-
-  left: 5%;
-  bottom: 10px;
-
-  font-size: 150px;
-
-  animation: waveMove 2s infinite alternate;
+  display: block;
+}
+.hero .face {
+  left: 30px;
+  bottom: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #cfeeff);
+}
+.hero .brim {
+  left: 5px;
+  bottom: 56px;
+  width: 130px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(#ffe7a0, #e0b04a);
+}
+.hero .hat {
+  left: 28px;
+  bottom: 64px;
+  width: 84px;
+  height: 46px;
+  border-radius: 84px 84px 8px 8px;
+  background: linear-gradient(#ffe7a0, #e0b04a);
+  border-bottom: 8px solid #d94a4a;
+}
+.hero.low {
+  left: 50%;
+  margin-left: -70px;
+  bottom: 20px;
+}
+.hero.left {
+  left: 18%;
+  bottom: 40px;
 }
 
+/* ship */
+.sea {
+  position: absolute;
+  left: -10%;
+  bottom: 0;
+  width: 120%;
+  height: 170px;
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(ellipse, #48c9f5, #0c5376 70%);
+  animation: seaWave 3s ease-in-out infinite alternate;
+}
 .ship {
   position: absolute;
-
-  right: 22%;
-  bottom: 60px;
-
-  font-size: 120px;
-
-  animation: floating 3s ease-in-out infinite;
-}
-
-.sun-symbol {
-  position: absolute;
-
-  top: 20px;
-  right: 25%;
-
-  font-size: 150px;
-
-  animation: spin 8s linear infinite;
-}
-
-.treasure {
-  position: absolute;
-
   right: 20%;
-  bottom: 55px;
-
-  font-size: 130px;
-
-  animation: treasureGlow 2s infinite alternate;
+  bottom: 105px;
+  width: 170px;
+  height: 150px;
+  filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.4));
+  animation: shipSail 3s ease-in-out infinite;
+}
+.ship i {
+  position: absolute;
+  display: block;
+}
+.ship .hull {
+  left: 0;
+  bottom: 0;
+  width: 170px;
+  height: 42px;
+  background: linear-gradient(#5a3a22, #2b1a0e);
+  clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+}
+.ship .mast {
+  left: 82px;
+  bottom: 38px;
+  width: 6px;
+  height: 112px;
+  background: #3a2414;
+}
+.ship .sailcloth {
+  left: 28px;
+  bottom: 52px;
+  width: 110px;
+  height: 84px;
+  background: linear-gradient(#fff, #cfeeff);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.bird {
+  position: absolute;
+  left: 18%;
+  top: 50px;
+  width: 44px;
+  height: 14px;
+  animation: birdFly 8s linear infinite;
+}
+.bird::before,
+.bird::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 22px;
+  height: 12px;
+  border-top: 4px solid #fff;
+  border-radius: 50% 50% 0 0;
+}
+.bird::before {
+  left: 0;
+  transform: rotate(-12deg);
+}
+.bird::after {
+  right: 0;
+  transform: rotate(12deg);
 }
 
-/* =========================================================
-   SPEECH
-========================================================= */
-
-.speech {
+/* sun and rings */
+.big-sun {
   position: absolute;
+  left: 50%;
+  top: 35px;
+  width: 150px;
+  height: 150px;
+  margin-left: -75px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#fff 0 7deg, transparent 7deg 20deg);
+  -webkit-mask: radial-gradient(
+    circle,
+    #000 0 30%,
+    transparent 32% 46%,
+    #000 48%
+  );
+  mask: radial-gradient(circle, #000 0 30%, transparent 32% 46%, #000 48%);
+  filter: drop-shadow(0 0 20px #65ddff);
+  animation: spin 5s linear infinite;
+}
+.ring {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: 50%;
+  top: 20px;
+  margin-left: -200px;
+  border: 15px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: spin 12s linear infinite;
+}
+.burst {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow:
+    0 0 30px #fff,
+    0 0 70px #5bdcff,
+    0 0 120px #5bdcff;
+  animation: burst 2s ease-in-out infinite;
+}
 
+/* treasure */
+.glow {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  right: 13%;
+  bottom: 30px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.5),
+    transparent 65%
+  );
+  animation: glowA 2s ease-in-out infinite alternate;
+}
+.gem {
+  position: absolute;
+  right: 23%;
+  bottom: 95px;
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, #fff, #7de6ff 45%, #2d8fd0);
+  box-shadow:
+    0 0 30px #5bdcff,
+    inset 0 0 20px rgba(255, 255, 255, 0.8);
+  animation: gemFloat 2s ease-in-out infinite;
+}
+.coins {
+  position: absolute;
+  right: 10%;
+  bottom: 40px;
+  display: flex;
+  gap: 8px;
+  animation: coinFloat 2s ease-in-out infinite alternate;
+}
+.coins i {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff3c0, #e0b04a);
+  border: 3px solid #b98a2c;
+  box-shadow: 0 0 12px rgba(255, 216, 107, 0.7);
+}
+
+/* speech bubbles */
+.bubble {
+  position: absolute;
   right: 8%;
   top: 55px;
-
-  max-width: 260px;
-
-  padding: 18px 20px;
-
-  background: white;
-
-  color: #071525;
-
-  border: 4px solid #071525;
-
-  border-radius: 20px;
-
-  font-family: "Bangers", cursive;
-
-  font-size: 24px;
-
+  max-width: 280px;
+  padding: 18px 22px;
+  background: #fff;
+  color: var(--ink);
+  border: 4px solid var(--ink);
+  border-radius: 25px;
+  font:
+    25px "Bangers",
+    cursive;
   letter-spacing: 2px;
-
   text-align: center;
-
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.45);
-
+  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.5);
   transform: rotate(2deg);
+  animation: bubbleFloat 2s ease-in-out infinite alternate;
+}
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: 30px;
+  bottom: -25px;
+  border: 15px solid transparent;
+  border-top: 20px solid var(--ink);
+  transform: rotate(25deg);
+}
+.lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background: repeating-linear-gradient(
+    120deg,
+    transparent 0 20px,
+    rgba(255, 255, 255, 0.1) 21px 23px,
+    transparent 24px 60px
+  );
+  animation: lines 1s linear infinite;
 }
 
-/* =========================================================
-   COMIC TEXT
-========================================================= */
-
-.comic-text {
+.text {
   margin-top: 18px;
-
-  padding: 18px 20px;
-
-  background: rgba(0, 0, 0, 0.55);
-
-  border-left: 5px solid white;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-left: 5px solid #fff;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.4);
 }
-
-.comic-text h2 {
-  font-family: "Bangers", cursive;
-
-  font-size: 30px;
-
+.text h2 {
+  font:
+    31px "Bangers",
+    cursive;
   letter-spacing: 3px;
 }
-
-.comic-text p {
+.text p {
   margin-top: 7px;
-
   color: #dff8ff;
-
   line-height: 1.7;
 }
+.text strong {
+  color: var(--gold);
+}
 
-/* =========================================================
-   COMIC CONTROLS
-========================================================= */
-
-.comic-controls {
+/* ---------- CONTROLS ---------- */
+.controls {
   width: min(850px, 95%);
-
-  margin: 25px auto;
-
+  margin: 25px auto 10px;
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
   gap: 20px;
 }
-
-.comic-controls button,
-.return-button {
-  width: auto;
-  height: auto;
-
-  padding: 11px 20px;
-
-  border: 2px solid white;
-
+.controls button,
+.return {
+  padding: 12px 20px;
+  border: 2px solid #fff;
   border-radius: 8px;
-
-  background: linear-gradient(135deg, white, #8edcff);
-
-  color: #071525;
-
-  font-family: "Bangers", cursive;
-
-  font-size: 17px;
-
-  letter-spacing: 2px;
-
   cursor: pointer;
-
-  transition: 0.2s;
+  background: linear-gradient(135deg, #fff, #8edcff);
+  color: var(--ink);
+  font:
+    17px "Bangers",
+    cursive;
+  letter-spacing: 2px;
+  transition: 0.25s;
 }
-
-.comic-controls button:hover,
-.return-button:hover {
-  transform: translateY(-3px);
-
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+.controls button:hover,
+.return:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
 }
-
-.comic-controls button:disabled {
-  opacity: 0.3;
-
+.controls button:disabled {
+  opacity: 0.25;
   cursor: not-allowed;
-
   transform: none;
+  box-shadow: none;
 }
-
+.progress {
+  min-width: 150px;
+  text-align: center;
+}
 #panelCounter {
-  font-family: "Bangers", cursive;
-
-  font-size: 21px;
-
+  font:
+    21px "Bangers",
+    cursive;
   letter-spacing: 2px;
 }
-
-/* =========================================================
-   RETURN BUTTON
-========================================================= */
-
-.return-button {
-  display: block;
-
-  margin: 10px auto 40px;
-
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.dots button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
   background: transparent;
-
-  color: white;
-
+  box-shadow: none;
+}
+.dots button.on {
+  background: #fff;
+  box-shadow: 0 0 10px #fff;
+}
+.track {
+  height: 4px;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.bar {
+  width: 25%;
+  height: 100%;
+  background: #fff;
+  box-shadow:
+    0 0 10px #fff,
+    0 0 20px var(--cyan);
+  transition: width 0.4s ease;
+}
+.hint {
+  text-align: center;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.return {
+  display: block;
+  margin: 15px auto 40px;
+  background: transparent;
+  color: #fff;
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
+/* ---------- KEYFRAMES ---------- */
 @keyframes appear {
   from {
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
+    transform: translateY(60px) scale(0.85) rotateX(15deg);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: none;
   }
 }
-
-@keyframes comicAppear {
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes drift {
+  to {
+    transform: translate(8vw, 6vh) scale(1.2);
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(-5px) rotate(-2deg);
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes shine {
+  to {
+    left: 130%;
+  }
+}
+@keyframes arrow {
+  to {
+    transform: translateX(7px);
+  }
+}
+@keyframes shake {
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+@keyframes toastIn {
   from {
     opacity: 0;
-    transform: scale(1.04);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
+    transform: translateY(-14px);
   }
 }
-
-@keyframes panelAppear {
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  15%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sailText {
+  from {
+    transform: scale(0.4) rotate(-8deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+@keyframes ring {
+  from {
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+  }
+  to {
+    width: 1800px;
+    height: 1800px;
+    opacity: 0;
+  }
+}
+@keyframes comicIn {
   from {
     opacity: 0;
-    transform: translateX(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
+    transform: scale(1.08);
   }
 }
-
-@keyframes auraLeft {
+@keyframes panelIn {
   from {
-    transform: scale(0.9);
-    opacity: 0.4;
-  }
-
-  to {
-    transform: scale(1.15);
-    opacity: 0.9;
+    opacity: 0;
+    transform: translateX(80px) rotateY(-10deg) scale(0.95);
   }
 }
-
-@keyframes auraRight {
-  from {
-    transform: scale(0.85);
-    opacity: 0.3;
-  }
-
+@keyframes sunPulse {
   to {
     transform: scale(1.15);
     opacity: 0.8;
   }
 }
-
-@keyframes energyLine {
-  0% {
-    transform: translateX(-10%);
-  }
-
+@keyframes bob {
   50% {
-    transform: translateX(10%);
-  }
-
-  100% {
-    transform: translateX(-10%);
+    transform: translateY(-20px) rotate(3deg);
   }
 }
-
-@keyframes energyRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-
+@keyframes seaWave {
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: translateX(40px) scaleY(1.15);
   }
 }
-
-@keyframes sunPulse {
-  from {
-    transform: scale(0.9);
-    opacity: 0.35;
-  }
-
-  to {
-    transform: scale(1.15);
-    opacity: 0.75;
-  }
-}
-
-@keyframes floating {
-  0% {
-    transform: translateY(0);
-  }
-
+@keyframes shipSail {
   50% {
-    transform: translateY(-15px) rotate(-3deg);
+    transform: translateY(-15px) rotate(3deg);
   }
-
+}
+@keyframes birdFly {
+  to {
+    transform: translate(700px, -80px);
+  }
+}
+@keyframes burst {
+  0%,
   100% {
-    transform: translateY(0);
+    transform: scale(0.5);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(4);
+    opacity: 0.8;
   }
 }
-
-@keyframes waveMove {
-  from {
-    transform: translateX(-20px);
-  }
-
+@keyframes glowA {
   to {
-    transform: translateX(20px);
+    transform: scale(1.3);
+    opacity: 0.8;
   }
 }
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+@keyframes gemFloat {
+  50% {
+    transform: translateY(-20px) rotate(50deg);
   }
-
+}
+@keyframes coinFloat {
   to {
-    transform: rotate(360deg);
+    transform: translateY(-15px);
   }
 }
-
-@keyframes treasureGlow {
-  from {
-    transform: scale(1);
-
-    filter: drop-shadow(0 0 5px white);
-  }
-
+@keyframes bubbleFloat {
   to {
-    transform: scale(1.1);
-
-    filter: drop-shadow(0 0 30px white);
+    transform: rotate(3deg) translateY(-5px);
+  }
+}
+@keyframes lines {
+  to {
+    transform: translateX(60px);
   }
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
+/* ---------- MOBILE ---------- */
 @media (max-width: 650px) {
   body {
     overflow-y: auto;
-
-    padding: 20px 0;
   }
-
-  .login-container {
-    width: 92%;
-
+  .card {
     padding: 32px 25px 27px;
   }
-
-  .login-container h1 {
+  .card h1 {
     font-size: 48px;
-
     letter-spacing: 3px;
   }
-
-  .comic-page {
-    padding: 25px 10px;
+  .comic {
+    padding: 25px 10px 40px;
   }
-
-  .comic-header h1 {
+  .c-head h1 {
     font-size: 40px;
   }
-
-  .comic-art {
-    height: 300px;
+  .art {
+    height: 320px;
   }
-
-  .character {
-    font-size: 85px;
-
-    left: 8%;
-  }
-
-  .speech {
-    max-width: 180px;
-
+  .bubble {
+    max-width: 170px;
     font-size: 17px;
-
     padding: 12px;
   }
-
-  .sun-symbol {
-    font-size: 100px;
+  .hero {
+    transform-origin: bottom left;
+    scale: 0.7;
   }
-
-  .treasure {
-    font-size: 90px;
+  .ship {
+    scale: 0.7;
+    right: 8%;
   }
-
-  .comic-controls {
-    gap: 10px;
+  .gem {
+    scale: 0.75;
   }
-
-  .comic-controls button {
+  .controls {
+    gap: 8px;
+  }
+  .controls button {
     padding: 9px 12px;
+    font-size: 13px;
+  }
+  .hud strong {
+    font-size: 15px;
+  }
+  .sail-text {
+    font-size: 42px;
+  }
+}
 
-    font-size: 14px;
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
