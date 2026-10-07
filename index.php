@@ -1,0 +1,130 @@
+
+<?php
+session_start();
+
+if (isset($_SESSION["captain_name"])) {
+    header("Location: dashboard.php");
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gear 5 Grand Line</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="login-page" id="loginPage">
+
+        <div class="card holo">
+
+            <div class="card-header">
+                <span class="rarity-badge" id="rarityBadge">
+                    COMMON
+                </span>
+
+                <h1>GEAR 5</h1>
+                <p>GRAND LINE</p>
+            </div>
+
+            <form action="login.php" method="POST" id="loginForm">
+
+                <div class="input-group">
+                    <label for="username">
+                        CAPTAIN NAME
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your captain name"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="bounty">
+                        BOUNTY
+                    </label>
+
+                    <input
+                        type="number"
+                        id="bounty"
+                        name="bounty"
+                        placeholder="Enter bounty"
+                        min="0"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">
+                        PASSKEY
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter passkey"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="remember-row">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                            name="remember"
+                        >
+
+                        Remember Captain
+                    </label>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+                    SET SAIL
+                </button>
+
+            </form>
+
+            <div class="rank-hint" id="rankHint">
+                Rookie
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

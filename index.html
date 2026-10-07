@@ -1,220 +1,90 @@
+<?php
+session_start();
+
+if (isset($_SESSION["captain_name"])) {
+    header("Location: dashboard.php");
+    exit;
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gear 5 | Grand Line</title>
+
+    <title>Gear 5 Grand Line</title>
+
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600;700&display=swap"
-      rel="stylesheet" />
   </head>
+
   <body>
-    <canvas id="fx" aria-hidden="true"></canvas>
-    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+    <main class="login-page" id="loginPage">
+      <div class="card holo">
+        <div class="card-header">
+          <span class="rarity-badge" id="rarityBadge"> COMMON </span>
 
-    <!-- LOGIN -->
-    <main class="stage" id="loginPage">
-      <section class="card" id="card" data-rarity="common">
-        <div class="holo" aria-hidden="true"></div>
-        <div class="sun-mark" aria-hidden="true"></div>
-        <span class="rarity" id="rarityBadge">COMMON</span>
+          <h1>GEAR 5</h1>
+          <p>GRAND LINE</p>
+        </div>
 
-        <div class="logo">ONE PIECE</div>
-        <h1>GRAND LINE</h1>
-        <p class="subtitle">WELCOME PIRATE</p>
-        <p class="subtitle captain">JUSTINE - KING OF THE PIRATES</p>
+        <form action="login.php" method="POST" id="loginForm">
+          <div class="input-group">
+            <label for="username"> CAPTAIN NAME </label>
 
-        <div class="divider"><span></span><b>LOG IN</b><span></span></div>
-
-        <form id="loginForm" novalidate>
-          <div class="field">
-            <label for="username">PIRATE NAME</label>
             <input
-              id="username"
               type="text"
-              placeholder="Enter your pirate name"
-              autocomplete="off"
-              maxlength="24"
+              id="username"
+              name="username"
+              placeholder="Enter your captain name"
+              autocomplete="username"
               required />
           </div>
 
-          <div class="field">
-            <label for="bounty">BOUNTY <em id="rankHint">Rookie</em></label>
+          <div class="input-group">
+            <label for="bounty"> BOUNTY </label>
+
             <input
-              id="bounty"
               type="number"
-              placeholder="Enter bounty berries"
+              id="bounty"
+              name="bounty"
+              placeholder="Enter bounty"
               min="0"
               required />
           </div>
 
-          <div class="field">
-            <label for="password">PASSKEY</label>
-            <div class="pw">
+          <div class="input-group">
+            <label for="password"> PASSKEY </label>
+
+            <div class="password-box">
               <input
-                id="password"
                 type="password"
-                placeholder="Enter your passkey"
+                id="password"
+                name="password"
+                placeholder="Enter passkey"
+                autocomplete="current-password"
                 required />
-              <button
-                type="button"
-                id="togglePassword"
-                class="eye"
-                aria-label="Show passkey">
-                SHOW
-              </button>
+
+              <button type="button" id="togglePassword">👁</button>
             </div>
           </div>
 
-          <div class="remember">
-            <label class="check"
-              ><input type="checkbox" id="rememberMe" /><span
-                >Remember this captain</span
-              ></label
-            >
-            <a href="#" id="forgotPassword">Forgot Passkey?</a>
+          <div class="remember-row">
+            <label>
+              <input type="checkbox" id="rememberMe" name="remember" />
+
+              Remember Captain
+            </label>
           </div>
 
-          <button type="submit" class="go" id="loginButton">
-            <span>SET SAIL</span><span class="arrow">&rarr;</span>
+          <button type="submit" class="login-button" id="loginButton">
+            SET SAIL
           </button>
-
-          <div class="divider small"><span></span><b>OR</b><span></span></div>
-
-          <div class="links">
-            <p>Don't have a crew?</p>
-            <a href="#" id="joinCrew">JOIN THE CREW</a>
-          </div>
-          <div class="back">
-            <a href="#" id="backHome">&larr; BACK TO HOME</a>
-          </div>
         </form>
 
-        <footer>
-          <p>SUN GOD NIKA</p>
-          <span>FIND THE ONE PIECE</span>
-        </footer>
-      </section>
+        <div class="rank-hint" id="rankHint">Rookie</div>
+      </div>
     </main>
-
-    <!-- TRANSITION -->
-    <div class="sail" id="sailTransition" aria-hidden="true">
-      <div class="sail-text">SETTING SAIL...</div>
-      <div class="sail-ring"></div>
-    </div>
-
-    <!-- COMIC -->
-    <section class="comic" id="comicPage" hidden>
-      <div class="comic-sun" aria-hidden="true"></div>
-
-      <header class="c-head">
-        <div class="logo">ONE PIECE</div>
-        <h1>THE GRAND LINE</h1>
-        <p>YOUR ADVENTURE BEGINS HERE</p>
-      </header>
-
-      <div class="hud">
-        <div><span>CAPTAIN</span><strong id="hudCaptain">UNKNOWN</strong></div>
-        <div><span>BOUNTY</span><strong id="hudBounty">0</strong></div>
-        <div><span>RANK</span><strong id="hudRank">ROOKIE</strong></div>
-        <div><span>STATUS</span><strong>SAILING</strong></div>
-      </div>
-
-      <div class="panels">
-        <article class="panel active">
-          <span class="tag">PANEL 01</span>
-          <div class="art a1">
-            <div class="orb"></div>
-            <div class="hero">
-              <i class="face"></i><i class="brim"></i><i class="hat"></i>
-            </div>
-            <div class="bubble">WELCOME<br />PIRATE!</div>
-            <div class="lines"></div>
-          </div>
-          <div class="text">
-            <h2>THE CALL OF THE SEA</h2>
-            <p>
-              The Grand Line is waiting. A new pirate has entered the sea, and
-              an unforgettable adventure begins.
-            </p>
-          </div>
-        </article>
-
-        <article class="panel">
-          <span class="tag">PANEL 02</span>
-          <div class="art a2">
-            <div class="sea"></div>
-            <div class="ship">
-              <i class="sailcloth"></i><i class="mast"></i><i class="hull"></i>
-            </div>
-            <div class="bird"></div>
-            <div class="bubble">SET<br />SAIL!</div>
-            <div class="lines"></div>
-          </div>
-          <div class="text">
-            <h2>INTO THE GRAND LINE</h2>
-            <p>
-              The waves become stronger, but the ship keeps moving forward. The
-              next island is waiting.
-            </p>
-          </div>
-        </article>
-
-        <article class="panel">
-          <span class="tag">PANEL 03</span>
-          <div class="art a3">
-            <div class="ring"></div>
-            <div class="big-sun"></div>
-            <div class="hero low">
-              <i class="face"></i><i class="brim"></i><i class="hat"></i>
-            </div>
-            <div class="burst"></div>
-            <div class="bubble">THE ADVENTURE<br />CONTINUES!</div>
-          </div>
-          <div class="text">
-            <h2>THE WILL OF THE DAWN</h2>
-            <p>
-              The sun rises over the sea. The will of freedom burns brighter
-              with every step.
-            </p>
-          </div>
-        </article>
-
-        <article class="panel">
-          <span class="tag">FINAL PANEL</span>
-          <div class="art a4">
-            <div class="glow"></div>
-            <div class="gem"></div>
-            <div class="hero left">
-              <i class="face"></i><i class="brim"></i><i class="hat"></i>
-            </div>
-            <div class="coins"><i></i><i></i><i></i></div>
-            <div class="bubble">FIND THE<br />ONE PIECE!</div>
-          </div>
-          <div class="text">
-            <h2>WELCOME ABOARD</h2>
-            <p id="welcomeMessage">Your story starts here, Captain!</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="controls">
-        <button type="button" id="previousButton">&larr; PREVIOUS</button>
-        <div class="progress">
-          <span id="panelCounter">1 / 4</span>
-          <div class="dots" id="dots"></div>
-          <div class="track"><div class="bar" id="progressBar"></div></div>
-        </div>
-        <button type="button" id="nextButton">NEXT &rarr;</button>
-      </div>
-
-      <p class="hint">Use the left and right arrow keys or swipe to navigate</p>
-      <button type="button" class="return" id="returnButton">
-        RETURN TO LOGIN
-      </button>
-    </section>
 
     <script src="script.js"></script>
   </body>
